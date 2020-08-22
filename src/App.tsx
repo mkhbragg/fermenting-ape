@@ -2,7 +2,7 @@ import React from 'react'
 import * as NetlifyIdentityWidget from 'netlify-identity-widget'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { Navbar, AuthenticationHook } from './components'
+import { Navbar } from './components'
 import { About, Home } from './pages'
 
 const App: React.FC = () => {
