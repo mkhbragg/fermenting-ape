@@ -3,9 +3,11 @@ const fetch = require('node-fetch')
 const { faunaFetch } = require('./utils/fauna')
 
 exports.handler = async ({ body, headers }, context) => {
+  let stripeEvent
+  let result
   try {
     // make sure this event was sent legitimately.
-    const stripeEvent = stripe.webhooks.constructEvent(
+    stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers['stripe-signature'],
       process.env.STRIPE_WEBHOOK_SECRET
@@ -16,7 +18,7 @@ exports.handler = async ({ body, headers }, context) => {
 
     const subscription = stripeEvent.data.object
 
-    const result = await faunaFetch({
+    result = await faunaFetch({
       query: `
           query ($stripeID: ID!) {
             getUserByStripeID(stripeID: $stripeID) {
@@ -58,7 +60,7 @@ exports.handler = async ({ body, headers }, context) => {
   } catch (err) {
     return {
       statusCode: 400,
-      body: `Webhook Error: ${err.message}`,
+      body: `Webhook Error: subscription.customer: ${stripeEvent.data.object.customer}, netlifyId: ${result.data.getUserByStripeID}, identity: ${context.clientContext}`,
     }
   }
 }
