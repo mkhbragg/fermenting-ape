@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import netlifyIdentity from 'netlify-identity-widget'
+import * as NetlifyIdentityWidget from 'netlify-identity-widget'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getUser, setUserLogin, setUserLogout } from '../../features'
@@ -8,7 +8,7 @@ export const AuthenticationHook: FC = () => {
   const user = useSelector(getUser)
   const dispatch = useDispatch()
 
-  const handleLogin = (netlifyUser: netlifyIdentity.User) => {
+  const handleLogin = (netlifyUser: NetlifyIdentityWidget.User) => {
     dispatch(
       setUserLogin({
         email: netlifyUser.email,
@@ -17,8 +17,11 @@ export const AuthenticationHook: FC = () => {
         fullName: netlifyUser.user_metadata.full_name,
       })
     )
+    NetlifyIdentityWidget.close()
   }
-  const handleUserStateChange = (netlifyUser?: netlifyIdentity.User | null) => {
+  const handleUserStateChange = (
+    netlifyUser?: NetlifyIdentityWidget.User | null
+  ) => {
     if (netlifyUser) {
       handleLogin(netlifyUser)
     } else {
@@ -28,16 +31,13 @@ export const AuthenticationHook: FC = () => {
   }
 
   // handle state change when identity widget is initialized
-  netlifyIdentity.on('init', handleUserStateChange)
+  NetlifyIdentityWidget.on('init', handleUserStateChange)
 
   // update store when user logs in
-  netlifyIdentity.on('login', handleLogin)
+  NetlifyIdentityWidget.on('login', handleLogin)
 
   // update store when user logs out
-  netlifyIdentity.on('logout', () => dispatch(setUserLogout()))
-
-  // initialize identity widget
-  netlifyIdentity.init()
+  NetlifyIdentityWidget.on('logout', () => dispatch(setUserLogout()))
 
   return null
 }

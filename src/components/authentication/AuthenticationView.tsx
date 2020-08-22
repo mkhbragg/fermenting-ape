@@ -18,14 +18,18 @@ export const AuthenticationView: FC<Props> = ({
   manageSubscription,
 }) => {
   return (
-    <>
-      <button onClick={user ? logout : login}>
-        {user ? 'log out' : 'log in'}
-      </button>
-      {!user && <button onClick={signup}>sign up</button>}
-      {user && (
-        <button onClick={manageSubscription}>manage subscription</button>
+    <div>
+      {user ? (
+        <>
+          <button onClick={logout}>logout</button>
+          <button onClick={manageSubscription}>manage subscription</button>
+        </>
+      ) : (
+        <>
+          <button onClick={login}>login</button>
+          <button onClick={signup}>sign up</button>
+        </>
       )}
-    </>
+    </div>
   )
 }

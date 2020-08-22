@@ -1,18 +1,25 @@
 import { combineReducers, createStore } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
 import { devToolsEnhancer } from 'redux-devtools-extension'
+import storage from 'redux-persist/lib/storage'
 
 import { CounterReducer } from '../counter'
 import { AuthReducer } from '../authentication'
 
+const authPersistConfig = {
+  key: 'auth',
+  storage: storage,
+}
+
 /* Create root reducer, containing all features of the application */
 const rootReducer = combineReducers({
   count: CounterReducer,
-  auth: AuthReducer,
+  auth: persistReducer(authPersistConfig, AuthReducer),
 })
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   /* preloadedState, */ devToolsEnhancer({})
 )
 
-export default store
+export const persistor = persistStore(store)

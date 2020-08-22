@@ -1,23 +1,38 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import styled from '@emotion/styled'
 
 import { AuthenticationContainer } from './authentication/AuthenticationContainer'
 
 export const Navbar: React.FC = () => (
   <nav>
-    <div className="nav-wrapper cyan darken-1 px1">
-      <NavLink to="/" className="brand-logo">
-        Redux + TypeScript
-      </NavLink>
-      <ul className="right hide-on-med-and-down">
-        <li cy-data="home-nav-link">
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/about">About</NavLink>
-        </li>
+    <FlexRow>
+      <NavLink to="/">The Fermenting Ape</NavLink>
+      <Container>
+        <List>
+          <ListItem>
+            <NavLink to="/">Home</NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink to="/about">About</NavLink>
+          </ListItem>
+        </List>
         <AuthenticationContainer />
-      </ul>
-    </div>
+      </Container>
+    </FlexRow>
   </nav>
 )
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+`
+
+const FlexRow = styled.div`
+  display: flex;
+`
+
+const List = styled.ul``
+
+const ListItem = styled.li``
