@@ -3,11 +3,9 @@ const fetch = require('node-fetch')
 const { faunaFetch } = require('./utils/fauna')
 
 exports.handler = async ({ body, headers }, context) => {
-  let stripeEvent
-  let result
   try {
     // make sure this event was sent legitimately.
-    stripeEvent = stripe.webhooks.constructEvent(
+    const stripeEvent = stripe.webhooks.constructEvent(
       body,
       headers['stripe-signature'],
       process.env.STRIPE_WEBHOOK_SECRET
@@ -18,7 +16,7 @@ exports.handler = async ({ body, headers }, context) => {
 
     const subscription = stripeEvent.data.object
 
-    result = await faunaFetch({
+    const result = await faunaFetch({
       query: `
           query ($stripeID: ID!) {
             getUserByStripeID(stripeID: $stripeID) {
