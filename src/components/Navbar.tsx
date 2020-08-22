@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { Authentication } from './authentication'
 
 export const Navbar: React.FC = () => (
   <nav>
@@ -14,6 +15,7 @@ export const Navbar: React.FC = () => (
         <li>
           <NavLink to="/about">About</NavLink>
         </li>
+        <Authentication />
       </ul>
     </div>
   </nav>
