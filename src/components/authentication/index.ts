@@ -1,2 +1,1 @@
-export { Authentication } from './Authentication'
-export * from './interfaces'
+export { AuthenticationHook } from './AuthenticationHook'
