@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
+import styled from '@emotion/styled'
 
 import { User } from '../../features'
+import { Button } from '../global/Button'
 
 interface Props {
   user: User
@@ -18,18 +20,24 @@ export const AuthenticationView: FC<Props> = ({
   manageSubscription,
 }) => {
   return (
-    <div>
+    <>
       {user ? (
         <>
-          <button onClick={logout}>logout</button>
-          <button onClick={manageSubscription}>manage subscription</button>
+          <Button onClick={logout}>logout</Button>
+          {/* <button onClick={manageSubscription}>manage subscription</button> */}
         </>
       ) : (
-        <>
-          <button onClick={login}>login</button>
-          <button onClick={signup}>sign up</button>
-        </>
+        <Spaced>
+          <Button onClick={login}>login</Button>
+          <Button onClick={signup}>sign up</Button>
+        </Spaced>
       )}
-    </div>
+    </>
   )
 }
+
+const Spaced = styled.div`
+  & button:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+`

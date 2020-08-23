@@ -31,6 +31,7 @@ const Container = styled.div`
 
 const FlexRow = styled.div`
   display: flex;
+  padding: 0 1rem;
 `
 
 const List = styled.ul``
