@@ -1,4 +1,5 @@
-import { User, AuthActionTypes, AuthActions } from './interfaces'
+import { AuthActionTypes, AuthActions } from './interfaces'
+import { User } from '../../user'
 
 export const setUserLogin = (user: User): AuthActionTypes => {
   return {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
-import { User } from '../../features'
-import { SubscriptionPrice } from './SubscriptionContainer'
+import { User } from '../../../user'
+import { SubscriptionPrice } from '../../api'
 
 interface Props {
   user: User

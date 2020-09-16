@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
 
-import { User } from '../../features'
+import { User } from '../../user'
 import { Button } from '../global/Button'
 
 interface Props {

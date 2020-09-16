@@ -1,15 +1,8 @@
+import { User } from '../../user'
+
 export enum AuthActions {
   LOGIN = 'login',
   LOGOUT = 'logout',
-}
-
-export interface User {
-  id: string
-  email: string
-  role: string
-  fullName: string
-  stripeId: string
-  token?: string
 }
 
 interface LogInAction {

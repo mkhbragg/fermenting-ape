@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 
-import { SubscriptionContainer, SubscriptionWizard } from '../components'
+import { SubscriptionContainer, SubscriptionWizard } from '../subscription'
 import { getUser } from '../features'
 
 export const Home: React.FC = () => {

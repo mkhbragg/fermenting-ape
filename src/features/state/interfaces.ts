@@ -1,4 +1,4 @@
-import { User } from '../authentication'
+import { User } from '../../user'
 
 export interface SystemState {
   count: {
