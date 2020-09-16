@@ -23,20 +23,31 @@ export const AuthenticationView: FC<Props> = ({
     <>
       {user ? (
         <>
-          <Button onClick={logout}>logout</Button>
+          <ButtonView inverse onClick={logout}>
+            logout
+          </ButtonView>
           {/* <button onClick={manageSubscription}>manage subscription</button> */}
         </>
       ) : (
         <Spaced>
-          <Button onClick={login}>login</Button>
-          <Button onClick={signup}>sign up</Button>
+          <ButtonView inverse onClick={login}>
+            login
+          </ButtonView>
+          <ButtonView inverse onClick={signup}>
+            sign up
+          </ButtonView>
         </Spaced>
       )}
     </>
   )
 }
 
+const ButtonView = styled(Button)`
+  align-self: center;
+`
+
 const Spaced = styled.div`
+  align-self: center;
   & button:not(:last-child) {
     margin-right: 0.5rem;
   }
